@@ -1,0 +1,82 @@
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+public class Main1 extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("T505");
+        
+        TextField int1 = new TextField();
+        int1.setMaxWidth(250);
+        
+        TextField int2 = new TextField();
+        int2.setMaxWidth(250);
+
+        Label label = new Label();
+        label.setTextFill(Color.BLUE);
+        label.setFont(Font.font("Times New Roman", 20));
+
+        //ADDITION
+        Button add = new Button("+");
+        add.setOnAction(e -> {
+            {
+                int result = Integer.parseInt(int1.getText()) + Integer.parseInt(int2.getText());
+                label.setText("Answer: " + result);
+            }});
+            
+        //SUBTRACTION
+        Button subtract = new Button("-");
+        subtract.setOnAction(e -> {
+            {
+                int result = Integer.parseInt(int1.getText()) - Integer.parseInt(int2.getText());
+                label.setText("Answer: " + result);
+            }});
+
+        //MULTIPLICATIOM
+        Button multiply = new Button("x");
+        multiply.setOnAction(e -> {
+            {
+                int result = Integer.parseInt(int1.getText()) * Integer.parseInt(int2.getText());
+                label.setText("Answer: " + result);
+            }});
+
+        //DIVISION
+        Button divide = new Button("/");
+        divide.setOnAction(e -> {
+            {
+                int num1 = Integer.parseInt(int1.getText());
+                int num2 = Integer.parseInt(int2.getText());
+                if (num2 == 0) {
+                    label.setText("Invalid Input! Cannot divide by zero.");
+                } else {
+                    double result = (double) num1 / num2;
+                    label.setText("Answer: " + result);
+                }
+            }});
+
+        // Create a layout (VBox) to arrange the label and buttons.
+        VBox root = new VBox(10);
+        root.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(int1, int2, add, subtract, multiply, divide, label);
+
+        // Create the scene and set it in the stage.
+        Scene scene = new Scene(root, 400, 350);
+        primaryStage.setScene(scene);
+
+        // Show the window.
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
